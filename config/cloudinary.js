@@ -1,6 +1,6 @@
 const cloudinary = require('cloudinary').v2
 
-exports.cloudinaryConnect = () => {
+exports.connect = () => {
   try {
     cloudinary.config({
       cloud_name: process.env.CLOUD_NAME,
