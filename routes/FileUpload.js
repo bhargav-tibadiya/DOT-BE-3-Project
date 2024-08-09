@@ -5,9 +5,9 @@ const { imageUpload, videoUpload, imageReducerUpload, localFileUpload } = requir
 
 // define API Routes
 
-router.post('/imageUpload', imageUpload)
-router.post('/videoUpload', videoUpload)
-router.post('/imageReducerUpload', imageReducerUpload)
+// router.post('/imageUpload', imageUpload)
+// router.post('/videoUpload', videoUpload)
+// router.post('/imageReducerUpload', imageReducerUpload)
 router.post('/localFileUpload', localFileUpload)
 
 module.exports = router;

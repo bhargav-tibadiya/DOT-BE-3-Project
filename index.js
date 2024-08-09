@@ -1,8 +1,8 @@
 const express = require('express');
 const fileUpload = require('express-fileupload');
+require('dotenv').config();
 const port = process.env.PORT || 3000;
 
-require('dotenv').config();
 
 // Adding Middleware
 const app = express();
@@ -19,9 +19,9 @@ cloudinary.connect()
 
 // Mounting API Routes
 const upload = require("./routes/FileUpload")
-app.use('api/v1/upload', upload)
+app.use('/api/v1/upload', upload)
 
 // Acitivate Server 
-app.listen(PORT, () => {
+app.listen(port, () => {
   console.log(`Server is Listening on Port : ${port}`);
 })
