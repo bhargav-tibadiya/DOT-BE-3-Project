@@ -19,7 +19,7 @@ const uploadFileToCloudinary = async (file, folder, quality) => {
   return await cloudinary.uploader.upload(file.tempFilePath, options)
 }
 
-exports.localFileUpload = async (req, res) => {
+exports.localFileUpload = async (req, res) => { 
   try {
 
     // Fething Files
