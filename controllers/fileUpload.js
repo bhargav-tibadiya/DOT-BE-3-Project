@@ -8,8 +8,9 @@ const isFileTypeSuppported = (currentType, supportedTypes) => {
 }
 
 const uploadFileToCloudinary = async (file, folder) => {
-  console.log("Uploading To CodeHelp Fooder");
+  console.log("Uploading To CodeHelp Folder");
   const options = { folder }
+  options.resource_type = "auto";
   return await cloudinary.uploader.upload(file.tempFilePath, options)
 }
 
@@ -88,6 +89,8 @@ exports.videoUpload = async (req, res) => {
 
     const file = req.files.videoFile;
 
+    console.log('file', file)
+
     const supportedTypes = ['mp4', 'avi', 'mki']
     const fileType = file.name.split('.')[1].toLowerCase();
 
@@ -97,6 +100,25 @@ exports.videoUpload = async (req, res) => {
         message: "Invalid File Formate"
       })
     }
+
+    console.log("++++Uploading File ++++ \n");
+    const response = await uploadFileToCloudinary(file, "CodeHelp")
+    console.log("++++File Uploaded ++++ \n");
+    console.log('response', response)
+
+    const fileData = await File.create({
+      name,
+      tags,
+      email,
+      videoUrl: response.secure_url,
+    })
+
+    res.json({
+      success: true,
+      videoUrlgit status: response.secure_url,
+      message: "Video Uploaded SuccessFully"
+    })
+
 
   } catch (error) {
     console.error(error)
